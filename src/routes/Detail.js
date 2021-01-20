@@ -11,13 +11,14 @@ const GET_MOVIE = gql`
             rating
             genres
             year
+            description_intro
         }
     }
 `;
 
 const Container = styled.div`
     height: 100vh;
-    background-image: linear-gradient(-45deg, #d754ab, #fd723a);
+    background-image: linear-gradient(-45deg, #AA076B, #61045F);
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -33,15 +34,18 @@ const Column = styled.div`
 const Title = styled.h1`
     font-size: 65px;
     margin-bottom: 15px;
+    font-family: 'Lobster', cursive;
 `;
 
 const Subtitle = styled.h4`
-    font-size: 35px;
+    font-size: 32px;
+    font-family: Inconsolata;
     margin-bottom: 10px;
 `;
 
 const Description = styled.p`
-    font-size: 28px;
+    font-size: 24px;
+    font-family: Inconsolata;
 `;
 
 const Poster = styled.div`
@@ -68,9 +72,9 @@ function Detail() {
                     : `${data?.movie?.title}`}
                 </Title>
                 <Subtitle>
-                {data?.movie?.rating}
+                <div>{data?.movie?.year} {!loading ? '/' : null} {data?.movie?.rating}</div>
                 </Subtitle>
-                <Description></Description>
+                <Description>{data?.movie?.description_intro}</Description>
             </Column>
             <Poster bg={data?.movie?.medium_cover_image}></Poster>
         </Container>
